@@ -40,11 +40,13 @@ public class Main {
             if (vastaus.equals("ei")) {
                 break;
             } else if (vastaus.equals("kyllä")) {
-                pelaaja.add(pakka.nostaKortti());
+                //pelaaja.add(pakka.nostaKortti());
+                pelaaja.add(2);
                 System.out.println("Kortti on: " + pelaaja.get(indeksi)); 
                 indeksi++;
             } else {
                 System.out.println("Virheellinen syöte");
+                continue;
             }      
             
             if (havisiko(pelaaja) == true) { //jos käsi ylittää 21, tarkistetaan onko ässiä
@@ -70,16 +72,16 @@ public class Main {
         }
         
         //emännän pelivuoro
-        if (havisiko(pelaaja) != true) {
+        if (havisiko(pelaaja) == false) {
             
             System.out.println("");
             System.out.println("Pelivuorossa emäntä:");
             emanta.add(pakka.nostaKortti());
-            System.out.println("Ensimmäinen kortti on: " + emanta.get(0));
             assanMuunto(emanta);
+            System.out.println("Ensimmäinen kortti on: " + emanta.get(0));
             int tokaIndeksi = 1;
             
-            while (havisiko(emanta) != true) {
+            while (havisiko(emanta) == false) {
                 if (laskeSumma(emanta)>= laskeSumma(pelaaja)|| laskeSumma(emanta) >=20) {
                     System.out.println("");
                     System.out.println("Pelaaja häviää.");
@@ -87,9 +89,9 @@ public class Main {
                     break;
                 } else {
                     emanta.add(pakka.nostaKortti());
+                    assanMuunto(emanta);
                     System.out.println("Seuraava kortti on: " + emanta.get(tokaIndeksi));
                     tokaIndeksi++;
-                    assanMuunto(emanta);
                     System.out.println("Korttien summa on: " + laskeSumma(emanta));
                     
                     if (havisiko(emanta) == true) {
