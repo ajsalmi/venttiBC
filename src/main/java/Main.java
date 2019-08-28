@@ -35,14 +35,12 @@ public class Main {
             System.out.println("Nostetaanko uusi kortti? [kyllä/ei]");
             String vastaus = lukija.nextLine();
             
-            if (vastaus.equals("ei")) break;
             
-            if (vastaus.equals("kyllä")) {
-                pelaaja.add(pakka.nostaKortti());
                 System.out.println("Kortti on: " + pelaaja.get(indeksi)); 
                 indeksi++;
             } else {
                 System.out.println("\nVirheellinen syöte!\n");
+                continue;
             }      
             
             if (havisiko(pelaaja) == true) { //jos käsi ylittää 21, tarkistetaan onko ässiä
@@ -69,8 +67,8 @@ public class Main {
             
             System.out.println("\nPelivuorossa emäntä:");
             emanta.add(pakka.nostaKortti());
-            System.out.println("Ensimmäinen kortti on: " + emanta.get(0));
             assanMuunto(emanta);
+            System.out.println("Ensimmäinen kortti on: " + emanta.get(0));
             int tokaIndeksi = 1;
             
             while (true) {
@@ -79,6 +77,19 @@ public class Main {
                     System.out.println("Pelaaja häviää.");
                     System.out.println("Emäntä voittaa!");
                     break;
+                } else {
+                    emanta.add(pakka.nostaKortti());
+                    assanMuunto(emanta);
+                    System.out.println("Seuraava kortti on: " + emanta.get(tokaIndeksi));
+                    tokaIndeksi++;
+                    System.out.println("Korttien summa on: " + laskeSumma(emanta));
+                    
+                    if (havisiko(emanta) == true) {
+                        System.out.println("");
+                        System.out.println("Emäntä häviää.");
+                        System.out.println("Pelaaja voittaa!");
+                        break;
+                    }
                 }
                 emanta.add(pakka.nostaKortti());
                 System.out.println("Seuraava kortti on: " + emanta.get(tokaIndeksi));
