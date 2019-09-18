@@ -84,13 +84,6 @@ public class Main {
                     emanta.add(kortti);
                     assanMuunto(emanta);
                     System.out.println("Korttien summa on: " + laskeSumma(emanta));
-
-                    if (havisiko(emanta)) {
-                        System.out.println("");
-                        System.out.println("Emäntä häviää.");
-                        System.out.println("Pelaaja voittaa!");
-                        break;
-                    }
                 }
 
                 if (havisiko(emanta)) {
